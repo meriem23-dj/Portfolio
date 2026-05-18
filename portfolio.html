@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meriem Djellid — Security Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0e0d12;
+    --bg2:      #13121a;
+    --bg3:      #1a1825;
+    --surface:  #1e1c2a;
+    --surface2: #252334;
+    --border:   rgba(200,170,210,0.10);
+    --border2:  rgba(200,170,210,0.18);
+    --rose:     #d4a8c0;
+    --rose-dim: rgba(212,168,192,0.15);
+    --mauve:    #b48ea8;
+    --lavender: #9d8fc4;
+    --lav-dim:  rgba(157,143,196,0.12);
+    --sage:     #7fa89a;
+    --sage-dim: rgba(127,168,154,0.12);
+    --text:     #ece7f0;
+    --text-mid: #9a90a8;
+    --text-dim: #5c5468;
+    --white:    #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* subtle dot grid */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(circle, rgba(200,170,210,0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 64px;
+    background: rgba(14,13,18,0.82);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.03em;
+  }
+  .nav-logo em { font-style: italic; color: var(--rose); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 40px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero .b1 { width: 600px; height: 600px; background: rgba(180,142,168,0.18); top: -150px; right: -150px; }
+  .hero .b2 { width: 480px; height: 480px; background: rgba(157,143,196,0.12); bottom: -80px; left: -120px; }
+  .hero .b3 { width: 320px; height: 320px; background: rgba(127,168,154,0.10); top: 30%; right: 10%; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 8px 22px;
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 44px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: riseIn 0.9s 0.15s ease forwards;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--rose);
+    border-radius: 50%;
+    animation: blink 2.4s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.55); }
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(64px, 10.5vw, 136px);
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -3px;
+    color: var(--text);
+    margin-bottom: 30px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: riseIn 0.9s 0.35s ease forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--rose); }
+
+  .hero-sub {
+    max-width: 540px;
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    margin-bottom: 54px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: riseIn 0.9s 0.55s ease forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: riseIn 0.9s 0.75s ease forwards;
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 34px;
+    border-radius: 100px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.28s;
+    cursor: pointer; border: none;
+  }
+  .btn-rose {
+    background: var(--rose);
+    color: var(--bg);
+  }
+  .btn-rose:hover { background: #dbb8ce; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(212,168,192,0.22); }
+  .btn-outline { background: transparent; border: 1px solid var(--border2); color: var(--text-mid); }
+  .btn-outline:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+
+  .hero-pills {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 68px;
+    position: relative; z-index: 1;
+    opacity: 0;
+    animation: riseIn 0.9s 1s ease forwards;
+  }
+  .pill {
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+    font-weight: 400;
+    border: 1px solid;
+  }
+  .pill-rose   { background: var(--rose-dim); color: var(--rose);     border-color: rgba(212,168,192,0.2); }
+  .pill-lav    { background: var(--lav-dim);  color: var(--lavender); border-color: rgba(157,143,196,0.2); }
+  .pill-sage   { background: var(--sage-dim); color: var(--sage);     border-color: rgba(127,168,154,0.2); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 112px 64px; position: relative; overflow: hidden; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--mauve); }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 66px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    margin-bottom: 64px;
+  }
+  .section-title em { font-style: italic; color: var(--rose); }
+
+  .deco-line { width: 48px; height: 1px; background: linear-gradient(90deg, var(--mauve), transparent); margin-bottom: 22px; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+  .about-visual { position: relative; height: 500px; }
+
+  .about-card-main {
+    position: absolute; top: 0; left: 0;
+    width: 76%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    height: 370px;
+    display: flex; align-items: flex-end; padding: 32px;
+  }
+
+  .about-card-float {
+    position: absolute; bottom: 0; right: 0;
+    width: 52%;
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 26px;
+  }
+
+  .avatar-initials {
+    width: 78px; height: 78px;
+    background: linear-gradient(135deg, var(--mauve), var(--lavender));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; color: var(--bg);
+    margin-bottom: 14px;
+  }
+
+  .about-name-card {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 5px;
+  }
+  .about-role-card { font-size: 12px; color: var(--text-mid); letter-spacing: 0.06em; }
+
+  .float-stat {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 300; color: var(--rose); line-height: 1; margin-bottom: 4px;
+  }
+  .float-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.07em; }
+
+  .about-text p { color: var(--text-mid); font-size: 15.5px; line-height: 1.9; margin-bottom: 18px; }
+
+  .detail-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); margin-top: 36px; }
+  .detail-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+  }
+  .detail-key { color: var(--text-dim); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .detail-val { color: var(--text); }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg); }
+
+  .projects-stack { display: flex; flex-direction: column; gap: 2px; }
+
+  .project-row {
+    display: grid; grid-template-columns: 220px 1fr; gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+  }
+  .project-row:hover {
+    border-color: var(--border2);
+    box-shadow: 0 16px 56px rgba(0,0,0,0.35);
+    transform: translateY(-3px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .project-aside {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 44px 28px; gap: 14px;
+    border-right: 1px solid var(--border);
+  }
+  .pa-rose   { background: rgba(212,168,192,0.08); }
+  .pa-lav    { background: rgba(157,143,196,0.08); }
+  .pa-sage   { background: rgba(127,168,154,0.08); }
+
+  .proj-icon { font-size: 46px; }
+  .proj-num {
+    font-size: 11px; letter-spacing: 0.12em; color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .project-body { padding: 42px 48px; }
+
+  .proj-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px; font-weight: 400; letter-spacing: -0.5px;
+    color: var(--text); margin-bottom: 10px;
+  }
+
+  .proj-desc { color: var(--text-mid); font-size: 14.5px; line-height: 1.85; margin-bottom: 26px; max-width: 560px; }
+
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .proj-tag {
+    padding: 4px 14px; border-radius: 100px; font-size: 11px; letter-spacing: 0.06em;
+    background: var(--surface2); color: var(--text-mid); border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .project-row:hover .proj-tag { border-color: var(--border2); }
+
+  .feat-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .feat-list li {
+    font-size: 13px; color: var(--text-dim);
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+  }
+  .feat-list li::before { content: '◆'; font-size: 7px; color: var(--rose); margin-top: 5px; flex-shrink: 0; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); }
+
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px 80px; }
+
+  .sg-name {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--mauve); margin-bottom: 18px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  }
+
+  .skill-cloud { display: flex; flex-wrap: wrap; gap: 9px; }
+
+  .skill-chip {
+    padding: 7px 17px; border-radius: 100px; font-size: 12.5px;
+    background: var(--surface); color: var(--text-mid);
+    border: 1px solid var(--border); transition: all 0.22s;
+  }
+  .skill-chip:hover { background: var(--surface2); color: var(--rose); border-color: var(--border2); transform: translateY(-2px); }
+
+  /* ── LANGUAGES ── */
+  #languages { background: var(--bg3); }
+
+  .lang-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+  .lang-items { display: flex; flex-direction: column; gap: 38px; }
+
+  .lang-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .lang-name-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 300; color: var(--text);
+  }
+  .lang-level-text { font-size: 11px; color: var(--text-dim); letter-spacing: 0.09em; }
+
+  .lang-bar { height: 2px; background: var(--surface2); border-radius: 10px; overflow: hidden; }
+  .lang-fill {
+    height: 100%; border-radius: 10px;
+    background: linear-gradient(90deg, var(--mauve), var(--lavender));
+    transform-origin: left; transform: scaleX(0);
+    transition: transform 1.3s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .interests-col { display: flex; flex-direction: column; gap: 14px; }
+
+  .interest-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 22px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; transition: all 0.25s;
+  }
+  .interest-card:hover { border-color: var(--border2); background: var(--surface2); transform: translateX(6px); }
+
+  .int-icon {
+    font-size: 20px; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface2); border-radius: 10px; flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .int-text { font-size: 13.5px; color: var(--text-mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 100px 64px 56px;
+    position: relative; overflow: hidden;
+  }
+
+  footer .fb { width: 500px; height: 500px; background: rgba(180,142,168,0.07); top: -150px; right: -150px; }
+
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; }
+
+  .footer-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 84px);
+    font-weight: 300; letter-spacing: -2.5px; line-height: 1; color: var(--text);
+  }
+  .footer-headline em { font-style: italic; color: var(--rose); }
+
+  .footer-contact { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+
+  .c-item {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text-mid); text-decoration: none; font-size: 13.5px;
+    transition: color 0.2s;
+  }
+  .c-item:hover { color: var(--rose); }
+  .c-dot { width: 5px; height: 5px; background: var(--mauve); border-radius: 50%; flex-shrink: 0; }
+
+  .footer-bottom {
+    padding-top: 28px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+    font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal       { opacity: 0; transform: translateY(32px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.75s ease, transform 0.75s ease; }
+  .reveal.in, .reveal-left.in, .reveal-right.in { opacity: 1; transform: translate(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 72px 24px; }
+    .about-grid, .lang-layout, .skills-grid { grid-template-columns: 1fr; gap: 40px; }
+    .project-row { grid-template-columns: 1fr; }
+    .project-aside { flex-direction: row; padding: 24px; justify-content: flex-start; border-right: none; border-bottom: 1px solid var(--border); }
+    .footer-top { flex-direction: column; gap: 44px; align-items: flex-start; }
+    .footer-contact { align-items: flex-start; }
+    footer { padding: 70px 24px 40px; }
+    .about-visual { height: 320px; }
+    .about-card-main { height: 230px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Meriem <em>Djellid</em></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <div class="hero-badge">Security Engineering Student</div>
+
+  <h1 class="hero-title">Meriem<br><em>Djellid</em></h1>
+
+  <p class="hero-sub">
+    Computer Security Engineering student specialising in secure backend architecture, behavioral authentication, and cloud-native application design. Committed to building systems where security is foundational, not incidental.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-rose">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch ✦</a>
+  </div>
+
+  <div class="hero-pills">
+    <span class="pill pill-rose">Secure Backend Systems</span>
+    <span class="pill pill-lav">Behavioral Biometrics</span>
+    <span class="pill pill-sage">Cloud Security · AWS</span>
+    <span class="pill pill-rose">Authentication Protocols</span>
+    <span class="pill pill-lav">Full-Stack Development</span>
+    <span class="pill pill-sage">Information Retrieval</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">01 — Profile</div>
+
+  <div class="about-grid">
+    <div class="about-visual reveal-left">
+      <div class="about-card-main">
+        <div>
+          <div class="avatar-initials">MD</div>
+          <div class="about-name-card">Meriem Djellid</div>
+          <div class="about-role-card">B.Eng. Computer Security · Oran, Algeria</div>
+        </div>
+      </div>
+      <div class="about-card-float">
+        <div class="float-stat">3+</div>
+        <div class="float-label">Security-focused projects</div>
+        <div style="margin-top:22px">
+          <div class="float-stat" style="color:var(--sage)">15+</div>
+          <div class="float-label">Technologies deployed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text reveal-right">
+      <div class="deco-line"></div>
+      <h2 class="section-title" style="margin-bottom:22px">Engineering security from the <em>ground up.</em></h2>
+      <p>I am a Computer Security Engineering student with a strong interest in the design and implementation of secure, resilient systems. My academic and practical work sits at the intersection of cryptography, access control, behavioral analytics, and scalable backend engineering.</p>
+      <p>I approach security not as a feature to be added, but as an architectural principle — from secure-by-default data handling and hardened API endpoints to continuous identity verification throughout an active user session.</p>
+      <p>I am actively seeking internship opportunities where I can contribute to real-world security challenges and deepen my expertise in applied cybersecurity and secure software development.</p>
+
+      <div class="detail-list">
+        <div class="detail-item">
+          <span class="detail-key">Location</span>
+          <span class="detail-val">Oran, Algeria 🇩🇿</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-key">Degree</span>
+          <span class="detail-val">B.Eng. Computer Security Engineering</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-key">Core Focus</span>
+          <span class="detail-val">Backend Security · Auth Systems · Cloud</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-key">Availability</span>
+          <span class="detail-val" style="color:var(--sage)">Open to internships & collaborations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">02 — Engineering Work</div>
+  <h2 class="section-title">Selected <em>projects</em></h2>
+
+  <div class="projects-stack">
+
+    <!-- CryptoX -->
+    <div class="project-row reveal">
+      <div class="project-aside pa-rose">
+        <div class="proj-icon">🔐</div>
+        <div class="proj-num">Project 01</div>
+      </div>
+      <div class="project-body">
+        <div class="proj-name">CryptoX — Secure Messaging Platform</div>
+        <p class="proj-desc">
+          A full-stack encrypted messaging application designed with a security-first architecture and deployed to production on Amazon Web Services. CryptoX implements hardened user authentication flows, session management, and lightweight persistent storage, demonstrating the integration of security controls across the full application lifecycle — from local development to cloud-hosted deployment.
+        </p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">SQLite</span>
+          <span class="proj-tag">AWS EC2</span>
+          <span class="proj-tag">HTML5 / CSS3 / JS</span>
+        </div>
+        <ul class="feat-list">
+          <li>Real-time, session-isolated messaging with server-side validation on all inputs</li>
+          <li>Hardened user authentication with scrypt password hashing and secure session management</li>
+          <li>Hybrid encryption architecture using AES-256-GCM for message confidentiality and RSA-OAEP for secure key exchange</li>
+          <li>Digital signature verification using RSA-PSS to ensure message authenticity and integrity</li>
+          <li>Support for encrypted direct messaging, private group conversations, encrypted file transfer, and voice messaging</li>
+          <li>Secure VPN infrastructure using WireGuard for encrypted network tunneling and protected communication channels</li>
+
+          <li>Cloud deployment on AWS with environment-separated configuration management</li>
+          <li>Applied security engineering principles including confidentiality, integrity, authentication, secure key management, and defense-in-depth</li>
+  </ul>
+      </div>
+    </div>
+
+    <!-- VoxKey -->
+    <div class="project-row reveal" style="transition-delay:0.12s">
+      <div class="project-aside pa-lav">
+        <div class="proj-icon">🎤</div>
+        <div class="proj-num">Project 02</div>
+      </div>
+      <div class="project-body">
+        <div class="proj-name">VoxKey — Continuous Behavioral Authentication</div>
+        <p class="proj-desc">
+          A multi-modal, continuous authentication system that transcends the limitations of static login-time verification. VoxKey monitors user identity across an entire active session by fusing two complementary behavioral biometric signals — voice biometrics and keystroke dynamics — to construct a persistent, evolving identity fingerprint. Unlike conventional authentication, the system can detect identity anomalies mid-session and enforce re-verification automatically, significantly reducing the attack surface of compromised credential scenarios.
+        </p>
+        <div class="proj-tags">
+          <span class="proj-tag">React</span>
+          <span class="proj-tag">TypeScript</span>
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">SQLite</span>
+          <span class="proj-tag">Web Audio API</span>
+        </div>
+        <ul class="feat-list">
+            <li>Voice biometrics module — extracts speaker-specific acoustic features using MFCC analysis for identity verification via microphone input</li>
+      <li>Keystroke dynamics engine — profiles user typing cadence, dwell time, and inter-key latency to build a behavioral fingerprint</li>
+      <li>Session-continuous verification — identity is validated throughout the session, not only at the authentication boundary</li>
+      <li>Anomaly-triggered re-authentication — behavioral drift beyond a defined threshold prompts step-up verification</li>
+     </ul>
+      </div>
+    </div>
+
+    <!-- Search Engine -->
+    <div class="project-row reveal" style="transition-delay:0.24s">
+      <div class="project-aside pa-sage">
+        <div class="proj-icon">🔎</div>
+        <div class="proj-num">Project 03</div>
+      </div>
+      <div class="project-body">
+        <div class="proj-name">Document Search Engine — Indexed Information Retrieval</div>
+        <p class="proj-desc">
+          A high-throughput document indexing and search system built on Elasticsearch, exposing a clean RESTful backend API for query processing. The system supports full-text indexing across heterogeneous document corpora, applies relevance-scored ranking to results, and is instrumented with Kibana for operational monitoring and query analytics. It integrates JWT authentication to secure API access and enforce stateless, token-based user authorization. Designed with extensibility in mind, it provides a reusable foundation for security-relevant retrieval applications such as audit log querying and policy document search.
+        </p>
+        <div class="proj-tags">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Elasticsearch</span>
+          <span class="proj-tag">Kibana</span>
+          <span class="proj-tag">REST API</span>
+        </div>
+        <ul class="feat-list">
+          <li>Full-text document indexing with field-level mapping and tokenisation configuration</li>
+          <li>BM25 relevance-ranked search results via the Elasticsearch scoring engine</li>
+          <li>RESTful backend API for structured query submission, JWT-based authentication, and result pagination</li>
+          <li>Secure stateless user authorization using JSON Web Tokens (JWT)</li>
+          <li>Kibana dashboard integration for search analytics and index health monitoring</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!-- PC-Agent -->
+<div class="project-row reveal" style="transition-delay:0.18s">
+  <div class="project-aside pa-lav">
+    <div class="proj-icon">🤖</div>
+    <div class="proj-num">Project 04</div>
+  </div>
+
+  <div class="project-body">
+    <div class="proj-name">PC-Agent — Local AI Desktop Assistant</div>
+
+    <p class="proj-desc">
+      A modular AI desktop assistant powered by Ollama and Llama 3.2, designed to understand natural language instructions and autonomously execute actions on a local machine. PC-Agent combines conversational AI, intent recognition, and tool-calling mechanisms to bridge human language with system-level task execution. The assistant processes requests locally through on-device inference, enabling privacy-preserving interactions without dependence on external cloud APIs. Its architecture emphasizes extensibility, lightweight orchestration, and secure local automation for intelligent desktop control.
+    </p>
+
+    <div class="proj-tags">
+      <span class="proj-tag">Python</span>
+      <span class="proj-tag">Ollama</span>
+      <span class="proj-tag">Llama 3.2</span>
+      <span class="proj-tag">Local AI</span>
+      <span class="proj-tag">JSON Tool Calling</span>
+      <span class="proj-tag">Desktop Automation</span>
+    </div>
+
+    <ul class="feat-list">
+      <li>Natural language command interpretation using local LLM inference through Ollama and Llama 3.2</li>
+      <li>JSON-based tool-calling architecture enabling autonomous execution of desktop and web actions</li>
+      <li>Automated task execution including application launching, website navigation, YouTube search, file creation, and program execution</li>
+      <li>Conversational memory and intent recognition for context-aware interactions across user sessions</li>
+      <li>Privacy-focused local inference pipeline eliminating dependency on external cloud AI APIs</li>
+      <li>Modular and extensible agent architecture designed for scalable AI-assisted desktop workflows</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">03 — Technical Competencies</div>
+  <h2 class="section-title">Skills & <em>tooling</em></h2>
+
+  <div class="skills-grid">
+    <div class="reveal">
+      <div class="sg-name">Programming Languages</div>
+      <div class="skill-cloud">
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">TypeScript</span>
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">C</span>
+        <span class="skill-chip">Kotlin</span>
+        <span class="skill-chip">HTML5 / CSS3</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.1s">
+      <div class="sg-name">Frameworks & Libraries</div>
+      <div class="skill-cloud">
+        <span class="skill-chip">Flask</span>
+        <span class="skill-chip">React</span>
+        <span class="skill-chip">Node.js</span>
+        <span class="skill-chip">Express.js</span>
+        <span class="skill-chip">Spring</span>
+        <span class="skill-chip">Qt</span>
+        <span class="skill-chip">Bootstrap</span>
+        <span class="skill-chip">Chart.js</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.2s">
+      <div class="sg-name">Data & Search Infrastructure</div>
+      <div class="skill-cloud">
+        <span class="skill-chip">Elasticsearch</span>
+        <span class="skill-chip">Kibana</span>
+        <span class="skill-chip">SQLite</span>
+        <span class="skill-chip">MySQL</span>
+        <span class="skill-chip">MariaDB</span>
+        <span class="skill-chip">PostgreSQL</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="transition-delay:0.3s">
+      <div class="sg-name">Platforms & Deployment</div>
+      <div class="skill-cloud">
+        <span class="skill-chip">AWS (EC2, S3)</span>
+        <span class="skill-chip">Linux</span>
+        <span class="skill-chip">Android (Kotlin)</span>
+        <span class="skill-chip">REST APIs</span>
+        <span class="skill-chip">Cloud Deployment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES & INTERESTS -->
+<section id="languages">
+  <div class="section-eyebrow">04 — Background</div>
+  <h2 class="section-title">Languages & <em>interests</em></h2>
+
+  <div class="lang-layout">
+    <div class="lang-items">
+      <div class="lang-item reveal">
+        <div class="lang-top">
+          <span class="lang-name-text">Arabic</span>
+          <span class="lang-level-text">Native proficiency</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" data-w="1"></div></div>
+      </div>
+      <div class="lang-item reveal" style="transition-delay:0.12s">
+        <div class="lang-top">
+          <span class="lang-name-text">French</span>
+          <span class="lang-level-text">Full professional proficiency</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" data-w="0.9"></div></div>
+      </div>
+      <div class="lang-item reveal" style="transition-delay:0.24s">
+        <div class="lang-top">
+          <span class="lang-name-text">English</span>
+          <span class="lang-level-text">Professional working proficiency</span>
+        </div>
+        <div class="lang-bar"><div class="lang-fill" data-w="0.8"></div></div>
+      </div>
+    </div>
+
+    <div class="interests-col reveal-right">
+      <div class="interest-card">
+        <div class="int-icon">🛡️</div>
+        <span class="int-text">Offensive & Defensive Security / Ethical Hacking</span>
+      </div>
+      <div class="interest-card">
+        <div class="int-icon">🔑</div>
+        <span class="int-text">Identity & Access Management · Authentication Protocols</span>
+      </div>
+      <div class="interest-card">
+        <div class="int-icon">☁️</div>
+        <span class="int-text">Cloud Security Architecture · AWS</span>
+      </div>
+      <div class="interest-card">
+        <div class="int-icon">🤖</div>
+        <span class="int-text">Machine Learning Applications in Cybersecurity</span>
+      </div>
+      <div class="interest-card">
+        <div class="int-icon">⚙️</div>
+        <span class="int-text">Scalable Secure Backend System Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="blob fb"></div>
+
+  <div class="footer-top">
+    <div class="footer-headline reveal">
+      Open to<br><em>opportunities.</em>
+    </div>
+    <div class="footer-contact reveal" style="transition-delay:0.18s">
+      <a href="mailto:djellid.meriem27@gmail" class="c-item">
+        <span class="c-dot"></span>djellid.meriem27@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/djellid-meriem-44596640b" class="c-item">
+        <span class="c-dot"></span>linkedin.com/djellid-meriem-44596640b
+
+
+      </a>
+      <a href="https://github.com/meriem23-dj" class="c-item">
+        <span class="c-dot"></span>github.com/meriem23-dj
+
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Meriem Djellid</span>
+    <span>Computer Security Engineering · Oran, Algeria</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+
+  // Language bars
+  const barIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const f = e.target.querySelector('.lang-fill');
+        if (f) f.style.transform = `scaleX(${f.dataset.w})`;
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.lang-item').forEach(el => barIO.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
