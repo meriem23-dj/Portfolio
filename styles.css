@@ -343,7 +343,7 @@
     font-size: 13px; color: var(--text-dim);
     display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
   }
-  .feat-list li::before { content: 'â—†'; font-size: 7px; color: var(--rose); margin-top: 5px; flex-shrink: 0; }
+  .feat-list li::before { content: '.'; font-size: 7px; color: var(--rose); margin-top: 5px; flex-shrink: 0; }
 
   /* â”€â”€ SKILLS â”€â”€ */
   #skills { background: var(--bg2); }
