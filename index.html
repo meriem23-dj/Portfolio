@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -110,10 +110,11 @@
   <div class="projects-stack">
 
     <!-- CryptoX -->
-    <div class="project-row reveal">
-      <div class="project-aside pa-rose">
+    <div class="project-row reveal" id="project-cryptox">
+      <div class="project-aside pa-rose" id="cryptox-aside">
         <div class="proj-icon">🔐</div>
         <div class="proj-num">Project 01</div>
+        <div class="proj-play-badge">Try Prototype ✦</div>
       </div>
       <div class="project-body">
         <div class="proj-name">CryptoX — Secure Messaging Platform</div>
@@ -137,7 +138,227 @@
 
           <li>Cloud deployment on AWS with environment-separated configuration management</li>
           <li>Applied security engineering principles including confidentiality, integrity, authentication, secure key management, and defense-in-depth</li>
-  </ul>
+        </ul>
+      </div>
+
+      <!-- CRYPTOX PROTOTYPE CONTAINER -->
+      <div class="cryptox-prototype" id="cryptox-proto" style="display: none;">
+        <!-- Exit Button -->
+        <button class="proto-close-btn" id="cx-close-btn">
+          <span class="close-icon">✕</span> Exit Prototype
+        </button>
+
+        <!-- SCREEN 1: SIGN IN -->
+        <div class="cx-screen cx-signin-screen" id="cx-screen-signin">
+          <div class="cx-signin-glow"></div>
+          <div class="cx-signin-glow-2"></div>
+          <div class="cx-signin-card">
+            <div class="cx-signin-logo">
+              <div class="cx-logo-wave">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                  <path d="M2 12h3l2-5 3 10 3-12 3 9 2-4 3 2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span>CRYPTOX</span>
+            </div>
+            <h2 class="cx-signin-title">Welcome<br>Back</h2>
+            <p class="cx-signin-subtitle">Sign in to access your security suite</p>
+            
+            <div class="cx-alert-box">
+              You have been signed out.
+            </div>
+            
+            <div class="cx-form">
+              <div class="cx-input-group">
+                <label>USERNAME</label>
+                <div class="cx-input-wrapper">
+                  <span class="cx-input-icon">👤</span>
+                  <input type="text" id="cx-username" value="mery" placeholder="Enter username" readonly>
+                </div>
+              </div>
+              
+              <div class="cx-input-group">
+                <label>PASSWORD</label>
+                <div class="cx-input-wrapper">
+                  <span class="cx-input-icon">🔒</span>
+                  <input type="password" id="cx-password" value="password" placeholder="Enter password" readonly>
+                </div>
+              </div>
+              
+              <button class="cx-btn-primary" id="cx-signin-submit">
+                <span id="cx-submit-text">Sign In</span> <span class="cx-btn-arrow" id="cx-submit-arrow">→</span>
+              </button>
+            </div>
+            
+            <p class="cx-signin-footer-text">Secure access to <span class="purple-text">CryptoX Security Suite</span></p>
+            <p class="cx-signin-signup-text">New here? <a href="#" onclick="return false;">Create an account</a></p>
+          </div>
+        </div>
+
+        <!-- SCREEN 2: MESSENGER -->
+        <div class="cx-screen cx-chat-screen" id="cx-screen-chat" style="display: none;">
+          <!-- Chat Header -->
+          <header class="cx-chat-header">
+            <div class="cx-header-left">
+              <div class="cx-chat-icon">💬</div>
+              <div>
+                <h1 class="cx-chat-title font-futuristic">Secure Messenger Exercise</h1>
+                <p class="cx-chat-subtitle">Direct chats, group chats, files, and voice notes are encrypted in the browser before upload.</p>
+              </div>
+            </div>
+            <div class="cx-header-right">
+              <div class="cx-status-indicator">
+                <span class="cx-status-dot"></span>
+                <span>SYSTEM SECURE</span>
+              </div>
+              <div class="cx-user-avatar">M</div>
+              <button class="cx-signout-btn" id="cx-signout-btn">
+                <span>SIGN OUT</span>
+                <span class="signout-icon">↳</span>
+              </button>
+            </div>
+          </header>
+
+          <!-- Chat Layout -->
+          <div class="cx-chat-layout">
+            <!-- Sidebar -->
+            <aside class="cx-chat-sidebar">
+              <!-- App Card -->
+              <div class="cx-app-card">
+                <div class="cx-app-logo">C</div>
+                <div>
+                  <h3 class="cx-app-name">CryptoX Messenger</h3>
+                  <p class="cx-app-desc">Encrypted communication lab</p>
+                </div>
+              </div>
+
+              <!-- Encrypted Session Status -->
+              <div class="cx-session-card">
+                <div class="cx-session-header">
+                  <span class="cx-session-dot"></span>
+                  <h4>Encrypted Session</h4>
+                </div>
+                <p class="cx-session-crypto">AES-256-GCM + RSA-OAEP + RSA-PSS + X.509 CA</p>
+                <p class="cx-session-status">Device keys loaded. X.509 identity certificates.</p>
+              </div>
+
+              <!-- Chats List -->
+              <div class="cx-chats-list-container">
+                <div class="cx-chats-header">
+                  <span>CHATS</span>
+                  <button class="cx-refresh-btn" onclick="return false;">Refresh</button>
+                </div>
+                <div class="cx-chats-list">
+                  <!-- Admin -->
+                  <div class="cx-chat-item">
+                    <div class="cx-avatar">AD</div>
+                    <div class="cx-chat-item-info">
+                      <div class="cx-chat-item-name">Admin</div>
+                      <div class="cx-chat-item-status">Ready</div>
+                    </div>
+                  </div>
+                  <!-- rahma -->
+                  <div class="cx-chat-item">
+                    <div class="cx-avatar">RA</div>
+                    <div class="cx-chat-item-info">
+                      <div class="cx-chat-item-name">rahma</div>
+                      <div class="cx-chat-item-status">Ready</div>
+                    </div>
+                  </div>
+                  <!-- rozix -->
+                  <div class="cx-chat-item cx-active">
+                    <div class="cx-avatar">RO</div>
+                    <div class="cx-chat-item-info">
+                      <div class="cx-chat-item-name">rozix</div>
+                      <div class="cx-chat-item-status text-purple">Ready</div>
+                    </div>
+                  </div>
+                  <!-- pook -->
+                  <div class="cx-chat-item">
+                    <div class="cx-avatar">PO</div>
+                    <div class="cx-chat-item-info">
+                      <div class="cx-chat-item-name">pook</div>
+                      <div class="cx-chat-item-status text-green">Group</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Create Group -->
+              <div class="cx-create-group">
+                <h4>CREATE GROUP</h4>
+                <div class="cx-group-input-wrapper">
+                  <input type="text" placeholder="Group name" class="cx-group-input" readonly>
+                  <button class="cx-group-btn" onclick="return false;">Create</button>
+                </div>
+              </div>
+            </aside>
+
+            <!-- Chat Window -->
+            <main class="cx-chat-window">
+              <!-- Chat Area Name -->
+              <div class="cx-chat-pane-header">
+                ROZIX
+              </div>
+
+              <!-- Messages Area -->
+              <div class="cx-messages-area" id="cx-messages-list">
+                <!-- Message: Rozix -->
+                <div class="cx-message-row cx-msg-received">
+                  <div class="cx-msg-bubble">
+                    <div class="cx-msg-sender">rozix</div>
+                    <div class="cx-msg-text">hey giiirl</div>
+                    <div class="cx-msg-meta">15 Apr, 18:04 · signature verified</div>
+                  </div>
+                </div>
+
+                <!-- Message: You (Text) -->
+                <div class="cx-message-row cx-msg-sent">
+                  <div class="cx-msg-bubble bg-purple-bubble">
+                    <div class="cx-msg-sender">You</div>
+                    <div class="cx-msg-text">hiiii my wifiiiiiii!!!</div>
+                    <div class="cx-msg-meta text-purple-light">15 Apr, 18:18 · signature verified</div>
+                  </div>
+                </div>
+
+                <!-- Message: You (Voice) -->
+                <div class="cx-message-row cx-msg-sent">
+                  <div class="cx-msg-bubble bg-purple-bubble cx-msg-voice">
+                    <div class="cx-msg-sender">You</div>
+                    <div class="cx-voice-player">
+                      <button class="cx-play-btn" id="cx-audio-play">▶</button>
+                      <div class="cx-waveform">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                      <span class="cx-duration">0:52</span>
+                      <button class="cx-more-btn" onclick="return false;">⋮</button>
+                    </div>
+                    <div class="cx-msg-meta text-purple-light">15 Apr, 18:20 · signature verified · SHA-256 file hash verified</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Banner status -->
+              <div class="cx-status-banner">
+                <span class="cx-banner-left" id="cx-banner-refresh-msg">Background refresh failed. Retrying soon.</span>
+                <span class="cx-banner-right">Current user: mery</span>
+              </div>
+
+              <!-- Input Bar -->
+              <form class="cx-input-bar" id="cx-chat-input-form" onsubmit="return false;">
+                <button type="button" class="cx-action-btn" onclick="alert('File transfers require active admin keys in this prototype.');">📎</button>
+                <input type="text" placeholder="Write an encrypted message..." class="cx-message-input" id="cx-message-input-field">
+                <button type="button" class="cx-action-btn" id="cx-mic-btn">🎤</button>
+                <button type="button" class="cx-action-btn cx-cancel-btn" id="cx-clear-text-btn">✕</button>
+                <button type="submit" class="cx-send-btn" id="cx-send-msg-btn">➔</button>
+              </form>
+            </main>
+          </div>
+        </div>
       </div>
     </div>
 
