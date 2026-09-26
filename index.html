@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meriem Djellid — Security Engineer</title>
+<title>Meriem Djellid  Security Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -14,6 +14,7 @@
 <nav>
   <div class="nav-logo">Meriem <em>Djellid</em></div>
   <ul class="nav-links">
+    
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -52,7 +53,7 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-eyebrow">01 — Profile</div>
+  <div class="section-eyebrow">01  Profile</div>
 
   <div class="about-grid">
     <div class="about-visual reveal-left">
@@ -77,7 +78,7 @@
       <div class="deco-line"></div>
       <h2 class="section-title" style="margin-bottom:22px">Engineering security from the <em>ground up.</em></h2>
       <p>I am a Computer Security Engineering student with a strong interest in the design and implementation of secure, resilient systems. My academic and practical work sits at the intersection of cryptography, access control, behavioral analytics, and scalable backend engineering.</p>
-      <p>I approach security not as a feature to be added, but as an architectural principle — from secure-by-default data handling and hardened API endpoints to continuous identity verification throughout an active user session.</p>
+      <p>I approach security not as a feature to be added, but as an architectural principle   from secure-by-default data handling and hardened API endpoints to continuous identity verification throughout an active user session.</p>
       <p>I am actively seeking internship opportunities where I can contribute to real-world security challenges and deepen my expertise in applied cybersecurity and secure software development.</p>
 
       <div class="detail-list">
@@ -104,7 +105,7 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-eyebrow">02 — Engineering Work</div>
+  <div class="section-eyebrow">02   Engineering Work</div>
   <h2 class="section-title">Selected <em>projects</em></h2>
 
   <div class="projects-stack">
@@ -117,10 +118,13 @@
         <div class="proj-play-badge">Try Prototype ✦</div>
       </div>
       <div class="project-body">
-        <div class="proj-name">CryptoX — Secure Messaging Platform</div>
+        <div class="proj-name">CryptoX   Secure Messaging Platform</div>
+        <div class="proj-problem">
+          <span class="proj-problem-label">The Problem</span>
+          <span class="proj-problem-text">How can users’ messages, files, and sensitive data be protected in a messaging application while ensuring confidentiality, integrity, authentication, and secure communication?</span>
+        </div>
         <p class="proj-desc">
-          A full-stack encrypted messaging application designed with a security-first architecture and deployed to production on Amazon Web Services. CryptoX implements hardened user authentication flows, session management, and lightweight persistent storage, demonstrating the integration of security controls across the full application lifecycle — from local development to cloud-hosted deployment.
-        </p>
+          A secure messaging application designed to protect conversations and shared files through modern cryptographic mechanisms. The project combines backend development, authentication, digital certificates, and end-to-end protection of sensitive data.        </p>
         <div class="proj-tags">
           <span class="proj-tag">Python</span>
           <span class="proj-tag">Flask</span>
@@ -363,15 +367,20 @@
     </div>
 
     <!-- VoxKey -->
-    <div class="project-row reveal" style="transition-delay:0.12s">
-      <div class="project-aside pa-lav">
+    <div class="project-row reveal" id="project-voxkey" style="transition-delay:0.12s">
+      <div class="project-aside pa-lav" id="voxkey-aside">
         <div class="proj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
         <div class="proj-num">Project 02</div>
+        <div class="proj-play-badge">Try Prototype ✦</div>
       </div>
       <div class="project-body">
-        <div class="proj-name">VoxKey — Continuous Behavioral Authentication</div>
+        <div class="proj-name">VoxKey   Continuous Behavioral Authentication</div>
+        <div class="proj-problem">
+          <span class="proj-problem-label">The Problem</span>
+          <span class="proj-problem-text">How to continuously verify a user's identity during a session using behavioral characteristics such as voice and typing patterns.</span>
+        </div>
         <p class="proj-desc">
-          A multi-modal, continuous authentication system that transcends the limitations of static login-time verification. VoxKey monitors user identity across an entire active session by fusing two complementary behavioral biometric signals — voice biometrics and keystroke dynamics — to construct a persistent, evolving identity fingerprint. Unlike conventional authentication, the system can detect identity anomalies mid-session and enforce re-verification automatically, significantly reducing the attack surface of compromised credential scenarios.
+          A multi-modal, continuous authentication system that transcends the limitations of static login-time verification. VoxKey monitors user identity across an entire active session by fusing two complementary behavioral biometric signals   voice biometrics and keystroke dynamics   to construct a persistent, evolving identity fingerprint. Unlike conventional authentication, the system can detect identity anomalies mid-session and enforce re-verification automatically, significantly reducing the attack surface of compromised credential scenarios.
         </p>
         <div class="proj-tags">
           <span class="proj-tag">React</span>
@@ -382,27 +391,65 @@
           <span class="proj-tag">Web Audio API</span>
         </div>
         <ul class="feat-list">
-            <li>Voice biometrics module — extracts speaker-specific acoustic features using MFCC analysis for identity verification via microphone input</li>
-      <li>Keystroke dynamics engine — profiles user typing cadence, dwell time, and inter-key latency to build a behavioral fingerprint</li>
-      <li>Session-continuous verification — identity is validated throughout the session, not only at the authentication boundary</li>
-      <li>Anomaly-triggered re-authentication — behavioral drift beyond a defined threshold prompts step-up verification</li>
-     </ul>
+          <li>Voice biometrics module   extracts speaker-specific acoustic features using MFCC analysis for identity verification via microphone input</li>
+          <li>Keystroke dynamics engine   profiles user typing cadence, dwell time, and inter-key latency to build a behavioral fingerprint</li>
+          <li>Session-continuous verification   identity is validated throughout the session, not only at the authentication boundary</li>
+          <li>Anomaly-triggered re-authentication   behavioral drift beyond a defined threshold prompts step-up verification</li>
+        </ul>
+      </div>
+
+      <!-- VOXKEY PROTOTYPE CONTAINER -->
+      <div class="voxkey-prototype" id="voxkey-proto" style="display: none;">
+        <!-- Exit Button -->
+        <button class="proto-close-btn" id="vk-close-btn">
+          ✕ Exit Prototype
+        </button>
+
+        <!-- Prototype Header & Nav Tabs -->
+        <div class="vk-proto-header">
+          <div class="vk-proto-title">VOXKEY DEMO</div>
+          <div class="vk-proto-tabs">
+            <button class="vk-tab-btn active" id="vk-tab-login">Login Screen</button>
+            <button class="vk-tab-btn" id="vk-tab-voice">Voice Dashboard (93%)</button>
+            <button class="vk-tab-btn" id="vk-tab-keyboard">Keyboard Dashboard (98%)</button>
+          </div>
+        </div>
+
+        <!-- Image Display Viewport -->
+        <div class="vk-img-viewport">
+          <div class="vk-img-wrap active" id="vk-view-login">
+            <img src="images/voxkey-login.png" alt="VoxKey Login Screen" class="vk-screen-img">
+            <div class="vk-hotspot" id="vk-login-hotspot" title="Click to Sign In"></div>
+          </div>
+          <div class="vk-img-wrap" id="vk-view-voice" style="display: none;">
+            <img src="images/voxkey-voice.png" alt="VoxKey Voice Analysis Dashboard" class="vk-screen-img">
+          </div>
+          <div class="vk-img-wrap" id="vk-view-keyboard" style="display: none;">
+            <img src="images/voxkey-keyboard.png" alt="VoxKey Keyboard Analysis Dashboard" class="vk-screen-img">
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Search Engine -->
-    <div class="project-row reveal" style="transition-delay:0.24s">
-      <div class="project-aside pa-sage">
+    <div class="project-row reveal" id="project-docsearch" style="transition-delay:0.24s">
+      <div class="project-aside pa-sage" id="docsearch-aside">
         <div class="proj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <div class="proj-num">Project 03</div>
+        <div class="proj-play-badge">Try Prototype ✦</div>
       </div>
       <div class="project-body">
-        <div class="proj-name">Document Search Engine — Indexed Information Retrieval</div>
+        <div class="proj-name">Document Search Engine  Indexed Information Retrieval</div>
+        <div class="proj-problem">
+          <span class="proj-problem-label">The Problem</span>
+          <span class="proj-problem-text">How to efficiently index and search a growing collection of documents when traditional search methods become less suitable for large-scale data.</span>
+        </div>
         <p class="proj-desc">
-          A high-throughput document indexing and search system built on Elasticsearch, exposing a clean RESTful backend API for query processing. The system supports full-text indexing across heterogeneous document corpora, applies relevance-scored ranking to results, and is instrumented with Kibana for operational monitoring and query analytics. It integrates JWT authentication to secure API access and enforce stateless, token-based user authorization. Designed with extensibility in mind, it provides a reusable foundation for security-relevant retrieval applications such as audit log querying and policy document search.
+          A high-throughput document indexing and search system built with Java and Spring Boot, integrated with Elasticsearch for full-text search. Exposes a clean RESTful API for query processing, applies BM25 relevance-scored ranking, and uses JWT authentication for secure, stateless API access.
         </p>
         <div class="proj-tags">
-          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Java</span>
+          <span class="proj-tag">Spring Boot</span>
           <span class="proj-tag">Elasticsearch</span>
           <span class="proj-tag">Kibana</span>
           <span class="proj-tag">REST API</span>
@@ -410,23 +457,104 @@
         <ul class="feat-list">
           <li>Full-text document indexing with field-level mapping and tokenisation configuration</li>
           <li>BM25 relevance-ranked search results via the Elasticsearch scoring engine</li>
+          <li>Fault-tolerant fuzzy search to handle spelling errors and minor query inaccuracies</li>
+          <li>Query optimization to improve search efficiency and response performance</li>
           <li>RESTful backend API for structured query submission, JWT-based authentication, and result pagination</li>
+          <li>Role-Based Access Control (RBAC) to restrict document access according to user roles and authorization levels</li>
           <li>Secure stateless user authorization using JSON Web Tokens (JWT)</li>
-          <li>Kibana dashboard integration for search analytics and index health monitoring</li>
+          <li>Kibana used externally to inspect and visualize indexed data and monitor index health</li>
         </ul>
+      </div>
+
+      <div class="tdsa-prototype" id="tdsa-proto" style="display: none;">
+        <button class="proto-close-btn" id="tdsa-close-btn">
+          ✕ Exit Prototype
+        </button>
+
+        <div class="tdsa-proto-header">
+          <div class="tdsa-proto-title">DOCUMENT SEARCH DEMO</div>
+        </div>
+
+        <div class="tdsa-viewport">
+          <div class="tdsa-view active" data-tdsa-view="login">
+            <div class="tdsa-image-wrap">
+              <img src="images/TDSA-Login.png" alt="Document Search login screen" class="tdsa-screen-img">
+              <input class="tdsa-editable" type="text" placeholder="Username" aria-label="Username" style="--x:52.8%;--y:38.4%;--w:20.8%;--h:8%;">
+              <input class="tdsa-editable" type="password" placeholder="Password" aria-label="Password" style="--x:52.8%;--y:51.4%;--w:20.8%;--h:8%;">
+              <button class="tdsa-hotspot" data-tdsa-go="signup" style="--x:31.2%;--y:53.7%;--w:11.2%;--h:9.1%;" aria-label="Open sign up"></button>
+              <button class="tdsa-hotspot" data-tdsa-go="main" style="--x:52.8%;--y:64.4%;--w:20.8%;--h:8%;" aria-label="Log in and open document search"></button>
+            </div>
+          </div>
+          <div class="tdsa-view" data-tdsa-view="main" style="display: none;">
+            <div class="tdsa-image-wrap">
+              <img src="images/TDSA-Main.png" alt="Document Search main dashboard" class="tdsa-screen-img">
+              <form class="tdsa-search-form" data-tdsa-search-form style="--x:21.2%;--y:12.2%;--w:56.3%;--h:10.4%;">
+                <input class="tdsa-editable tdsa-search-input" type="search" placeholder="Search PV, reports..." aria-label="Search documents" data-tdsa-search-input>
+                <button class="tdsa-search-submit" type="submit" aria-label="Submit document search"></button>
+              </form>
+              <button class="tdsa-hotspot" data-tdsa-go="upload" style="--x:1%;--y:45.5%;--w:13%;--h:9.1%;" aria-label="Upload a document"></button>
+              <button class="tdsa-hotspot" data-tdsa-go="login" style="--x:1%;--y:67.5%;--w:13%;--h:7.2%;" aria-label="Log out and return to login"></button>
+            </div>
+          </div>
+          <div class="tdsa-view" data-tdsa-view="search" style="display: none;">
+            <div class="tdsa-image-wrap">
+              <img src="images/TDSA-Search.png" alt="Document Search result view" class="tdsa-screen-img">
+              <form class="tdsa-search-form" data-tdsa-search-form style="--x:26%;--y:7.6%;--w:47.5%;--h:6.6%;">
+                <input class="tdsa-editable tdsa-search-input" type="search" placeholder="Search documents" aria-label="Search results" data-tdsa-search-input value="pv">
+                <button class="tdsa-search-submit" type="submit" aria-label="Submit document search"></button>
+              </form>
+              <button class="tdsa-hotspot" data-tdsa-go="upload" style="--x:1%;--y:29%;--w:13%;--h:8%;" aria-label="Upload a document"></button>
+              <button class="tdsa-hotspot" data-tdsa-go="login" style="--x:1%;--y:70.5%;--w:13%;--h:7%;" aria-label="Log out and return to login"></button>
+            </div>
+            <p class="tdsa-feedback" id="tdsa-search-feedback" role="status" aria-live="polite"></p>
+          </div>
+          <div class="tdsa-view" data-tdsa-view="signup" style="display: none;">
+            <div class="tdsa-image-wrap">
+              <img src="images/TDSA-SignUp.png" alt="Document Search sign up screen" class="tdsa-screen-img">
+              <input class="tdsa-editable" type="text" placeholder="Username" aria-label="Create username" style="--x:26.4%;--y:29.9%;--w:20.7%;--h:8%;">
+              <select class="tdsa-editable" aria-label="Select role" style="--x:26.4%;--y:42.8%;--w:20.7%;--h:8%;"><option value="">Select role</option><option>Student</option><option>Teacher</option><option>Administrator</option></select>
+              <input class="tdsa-editable" type="password" placeholder="Password" aria-label="Create password" style="--x:26.4%;--y:59.9%;--w:20.7%;--h:8%;">
+              <button class="tdsa-hotspot" data-tdsa-go="login" style="--x:26.4%;--y:72.6%;--w:20.7%;--h:8%;" aria-label="Create account and return to login"></button>
+              <button class="tdsa-hotspot" data-tdsa-go="login" style="--x:57.5%;--y:55.2%;--w:11.5%;--h:9.1%;" aria-label="Return to login"></button>
+            </div>
+          </div>
+          <div class="tdsa-view" data-tdsa-view="upload" style="display: none;">
+            <div class="tdsa-image-wrap">
+              <img src="images/TDSA-Upload.png" alt="Document Search upload screen" class="tdsa-screen-img">
+              <input class="tdsa-editable tdsa-upload-field" type="text" placeholder="Enter document title" aria-label="Document title" style="--x:38.7%;--y:5.5%;--w:20.5%;--h:4.2%;">
+              <input class="tdsa-editable tdsa-upload-field" type="date" aria-label="Upload date" style="--x:38.7%;--y:16.1%;--w:20.5%;--h:4.2%;">
+              <input class="tdsa-editable tdsa-upload-field" type="text" placeholder="Enter keyword" aria-label="Keyword" style="--x:38.7%;--y:25.8%;--w:20.5%;--h:4.2%;">
+              <select class="tdsa-editable tdsa-upload-field" aria-label="Document type" style="--x:38.7%;--y:35.5%;--w:20.5%;--h:4.2%;"><option>PDF</option><option>DOCX</option><option>TXT</option></select>
+              <select class="tdsa-editable tdsa-upload-field" aria-label="Category" style="--x:38.7%;--y:45.2%;--w:20.5%;--h:4.2%;"><option value="">Select category</option><option>Academic</option><option>Research</option><option>Administrative</option></select>
+              <select class="tdsa-editable tdsa-upload-field" aria-label="Visibility" style="--x:38.7%;--y:54.7%;--w:20.5%;--h:4.2%;"><option value="">Select visibility</option><option>Public</option><option>Private</option></select>
+              <input class="tdsa-editable tdsa-upload-field" type="text" placeholder="Enter the author" aria-label="Author" style="--x:38.7%;--y:64.4%;--w:20.5%;--h:4.2%;">
+              <textarea class="tdsa-editable tdsa-upload-field" aria-label="Document description" style="--x:38.7%;--y:74%;--w:20.5%;--h:7.2%;"></textarea>
+              <input class="tdsa-file-input" type="file" aria-label="Choose document file" style="--x:38.7%;--y:87.6%;--w:20.5%;--h:5.4%;">
+              <button class="tdsa-hotspot" data-tdsa-upload-submit style="--x:38.7%;--y:95%;--w:20.5%;--h:4.2%;" aria-label="Submit document upload"></button>
+              <p class="tdsa-upload-feedback" id="tdsa-upload-feedback" role="status" aria-live="polite"></p>
+              <button class="tdsa-hotspot" data-tdsa-go="main" style="--x:1%;--y:23%;--w:13%;--h:8%;" aria-label="Return to document search"></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
   </div>
   <!-- PC-Agent -->
-<div class="project-row reveal" style="transition-delay:0.18s">
-  <div class="project-aside pa-lav">
+<div class="project-row reveal" id="project-pcagent" style="transition-delay:0.18s">
+  <div class="project-aside pa-lav" id="pcagent-aside">
     <div class="proj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 2v3"/><circle cx="12" cy="5" r="1"/><path d="M7 15h.01M17 15h.01"/><path d="M9 11V9a3 3 0 0 1 6 0v2"/></svg></div>
     <div class="proj-num">Project 04</div>
+    <div class="proj-play-badge">View Sequence ✦</div>
   </div>
 
   <div class="project-body">
-    <div class="proj-name">PC-Agent — Local AI Desktop Assistant</div>
+    <div class="proj-name">PC-Agent  Local AI Desktop Assistant</div>
+
+    <div class="proj-problem">
+      <span class="proj-problem-label">The Problem</span>
+      <span class="proj-problem-text">How to build a local AI agent capable of understanding natural-language requests, converting them into structured actions, and safely executing those actions on a user's computer.</span>
+    </div>
 
     <p class="proj-desc">
       A modular AI desktop assistant powered by Ollama and Llama 3.2, designed to understand natural language instructions and autonomously execute actions on a local machine. PC-Agent combines conversational AI, intent recognition, and tool-calling mechanisms to bridge human language with system-level task execution. The assistant processes requests locally through on-device inference, enabling privacy-preserving interactions without dependence on external cloud APIs. Its architecture emphasizes extensibility, lightweight orchestration, and secure local automation for intelligent desktop control.
@@ -450,12 +578,89 @@
       <li>Modular and extensible agent architecture designed for scalable AI-assisted desktop workflows</li>
     </ul>
   </div>
+
+  <div class="pcagent-prototype" id="pcagent-proto" style="display:none;">
+    <button class="proto-close-btn" id="pcagent-close-btn">
+      <span class="close-icon">✕</span> Exit Sequence
+    </button>
+
+    <div class="pcagent-stage" id="pcagent-stage" role="img" aria-label="PC Agent sequence screenshot 1">
+      <img id="pcagent-image" src="images/1.png" alt="PC Agent sequence frame 1">
+    </div>
+
+    <div class="pcagent-controls">
+      <button class="pcagent-nav-btn" id="pcagent-prev" type="button">Previous</button>
+      <div class="pcagent-counter" id="pcagent-counter">1 / 7</div>
+      <button class="pcagent-nav-btn pcagent-nav-btn-primary" id="pcagent-next" type="button">Next</button>
+    </div>
+  </div>
 </div>
+
+  <!-- FROG Compiler -->
+  <div class="project-row reveal" id="project-frog" style="transition-delay:0.24s">
+    <div class="project-aside pa-rose" id="frog-aside">
+      <div class="proj-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div class="proj-num">Project 05</div>
+      <div class="proj-play-badge">Try Prototype ✦</div>
+    </div>
+
+    <div class="project-body">
+      <div class="proj-name">FROG   Compiler for a Fictional Language</div>
+
+      <div class="proj-problem">
+        <span class="proj-problem-label">The Problem</span>
+        <span class="proj-problem-text">How to design and implement a complete compiler pipeline — from lexical analysis to AST generation — for a custom programming language, and expose it through an interactive GUI.</span>
+      </div>
+
+      <p class="proj-desc">
+        A fully functional compiler for FROG, a structured fictional programming language designed to illustrate core compilation principles. The compiler performs lexical analysis, recursive-descent parsing, and semantic analysis, then generates a visual Abstract Syntax Tree (AST) via Graphviz. A Qt5 desktop interface provides an interactive environment to write, compile, and inspect FROG programs in real time.
+      </p>
+
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Qt5</span>
+        <span class="proj-tag">Graphviz</span>
+        <span class="proj-tag">Compiler Design</span>
+      </div>
+
+      <ul class="feat-list">
+        <li>Lexer — tokenises FROG source code into a typed token stream for downstream processing</li>
+        <li>Recursive-descent parser — builds a parse tree from the token stream following the formal FROG grammar</li>
+        <li>Semantic analyser — validates declarations, type consistency, and variable usage across the program</li>
+        <li>AST visualisation — generates a graphical syntax tree via Graphviz to aid debugging and comprehension</li>
+        <li>Language features: typed variable declaration (FRG_INT, FRG_REAL, FRG_STRG), assignment, FRG_Print output, IF/ELSE conditionals, and REPEAT/UNTIL loops</li>
+        <li>Qt5 desktop frontend — interactive editor with compile-on-demand and integrated AST viewer</li>
+      </ul>
+    </div>
+
+    <div class="frog-prototype" id="frog-proto" style="display: none;">
+      <button class="proto-close-btn" id="frog-close-btn">
+        <span class="close-icon">✕</span> Exit Prototype
+      </button>
+
+      <div class="frog-proto-header">
+        <div class="frog-proto-title">FROG COMPILER</div>
+        <div class="frog-proto-current" id="frog-current-view">Main</div>
+      </div>
+
+      <div class="frog-viewport">
+        <div class="frog-image-wrap">
+          <img id="frog-screen-image" src="images/Frog-main.png" alt="FROG compiler main screen">
+          <button class="frog-hotspot" type="button" data-frog-screen="lexical" aria-label="Run lexical analysis" title="Run Lexical" style="--x:1.9%;--y:26.2%;--w:21.8%;--h:6.3%;"></button>
+          <button class="frog-hotspot" type="button" data-frog-screen="syntaxique" aria-label="Run syntax analysis" title="Run Syntax" style="--x:1.9%;--y:35.1%;--w:21.8%;--h:6.3%;"></button>
+          <button class="frog-hotspot" type="button" data-frog-screen="syntaxique" aria-label="Generate syntax tree" title="Generate Tree" style="--x:1.9%;--y:43.7%;--w:21.8%;--h:6.3%;"></button>
+          <button class="frog-hotspot" type="button" data-frog-screen="semantique" aria-label="Run semantic analysis" title="Run Semantic" style="--x:1.9%;--y:52.8%;--w:21.8%;--h:6.3%;"></button>
+          <button class="frog-hotspot" type="button" data-frog-screen="minimap" aria-label="Show mini map" title="Show Mini Map" style="--x:1.9%;--y:62%;--w:21.8%;--h:6.3%;"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-eyebrow">03 — Technical Competencies</div>
+  <div class="section-eyebrow">03  Technical Competencies</div>
   <h2 class="section-title">Skills & <em>tooling</em></h2>
 
   <div class="skills-grid">
@@ -479,7 +684,7 @@
         <span class="skill-chip">React</span>
         <span class="skill-chip">Node.js</span>
         <span class="skill-chip">Express.js</span>
-        <span class="skill-chip">Spring</span>
+        <span class="skill-chip">Spring Boot</span>
         <span class="skill-chip">Qt</span>
         <span class="skill-chip">Bootstrap</span>
         <span class="skill-chip">Chart.js</span>
@@ -513,7 +718,7 @@
 
 <!-- LANGUAGES & INTERESTS -->
 <section id="languages">
-  <div class="section-eyebrow">04 — Background</div>
+  <div class="section-eyebrow">04  Background</div>
   <h2 class="section-title">Languages & <em>interests</em></h2>
 
   <div class="lang-layout">
@@ -527,14 +732,14 @@
       </div>
       <div class="lang-item reveal" style="transition-delay:0.12s">
         <div class="lang-top">
-          <span class="lang-name-text">English</span>
+          <span class="lang-name-text">French</span>
           <span class="lang-level-text">Full professional proficiency</span>
         </div>
         <div class="lang-bar"><div class="lang-fill" data-w="0.9"></div></div>
       </div>
       <div class="lang-item reveal" style="transition-delay:0.24s">
         <div class="lang-top">
-          <span class="lang-name-text">French</span>
+          <span class="lang-name-text">English</span>
           <span class="lang-level-text">Professional working proficiency</span>
         </div>
         <div class="lang-bar"><div class="lang-fill" data-w="0.8"></div></div>
@@ -578,8 +783,8 @@
       <a href="mailto:djellid.meriem27@gmail" class="c-item">
         <span class="c-dot"></span>djellid.meriem27@gmail.com
       </a>
-      <a href="https://www.linkedin.com/in/djellid-meriem-44596640b" class="c-item">
-        <span class="c-dot"></span>linkedin.com/djellid-meriem-44596640b
+      <a href="https://www.linkedin.com/in/djellid-meriem" class="c-item">
+        <span class="c-dot"></span>linkedin.com/djellid-meriem
 
 
       </a>
